@@ -1,0 +1,13 @@
+{
+  "$schema": "https://deno.land/x/denon/schema.json",
+  "allow": ["net", "env", "read"],
+  "unstable": true,
+  "inspect": "127.0.0.1:9229",
+  "scripts": {
+    "start": {
+      "cmd": "deno run src/index.ts",
+      "desc": "run my deno server file",
+      "lock": "lock.json"
+    }
+  }
+}
