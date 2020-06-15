@@ -1,5 +1,5 @@
 import { User } from "../mod.ts";
-const data = JSON.parse(Deno.readTextFileSync("./db.json"));
+const data = JSON.parse(Deno.readTextFileSync("db.json"));
 
 export const users: Array<User> = data.users;
 

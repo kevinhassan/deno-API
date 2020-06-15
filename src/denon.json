@@ -5,7 +5,7 @@
   "inspect": "127.0.0.1:9229",
   "scripts": {
     "start": {
-      "cmd": "deno run src/index.ts",
+      "cmd": "deno run index.ts",
       "desc": "run my deno server file",
       "lock": "lock.json"
     }
