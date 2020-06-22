@@ -1,6 +1,6 @@
 {
   "$schema": "https://deno.land/x/denon/schema.json",
-  "allow": ["net", "env", "read"],
+  "allow": ["net", "env", "read", "write", "plugin"],
   "unstable": true,
   "inspect": "127.0.0.1:9229",
   "scripts": {

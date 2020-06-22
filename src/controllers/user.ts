@@ -1,12 +1,12 @@
-import { UserService, User } from "../mod.ts";
+import { UserService, User, auth } from "../mod.ts";
 
-export function getUsers(
+export async function getUsers(
   { response }: {
     response: any;
   },
 ) {
   response.status = 200;
-  response.body = UserService.getAll();
+  response.body = await UserService.getAll();
 }
 
 export async function addUser(
@@ -16,37 +16,38 @@ export async function addUser(
   },
 ) {
   const user = (await request.body()).value as User;
+  user.password = await auth.encryptPassword(user.password);
   response.status = 201;
-  response.body = UserService.add(user);
+  response.body = await UserService.add(user);
 }
 
-export function getUser(
+export async function getUser(
   { params, response }: {
     params: any;
     response: any;
   },
 ) {
   response.status = 200;
-  response.body = UserService.get(params.id);
+  response.body = await UserService.get(params.id);
 }
 
 export async function updateUser(
-  { request, response }: {
+  { request, params, response }: {
     request: any;
+    params: any;
     response: any;
   },
 ) {
-  const body = await request.body();
-  const { user }: { user: User } = body;
+  const user = (await request.body()).value as User;
   response.status = 200;
-  response.body = UserService.update(user);
+  response.body = await UserService.update(user, params.id);
 }
-export function removeUser(
+export async function removeUser(
   { params, response }: {
     params: any;
     response: any;
   },
 ) {
   response.status = 200;
-  response.body = UserService.remove(params.id);
+  response.body = await UserService.remove(params.id);
 }

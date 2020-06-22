@@ -16,4 +16,4 @@ ENV DENO_INSTALL="/root/.deno"
 
 ENV PATH="$DENO_INSTALL/bin:$PATH"
 
-CMD deno run --allow-net --allow-env --allow-read index.ts
+CMD deno run --unstable --allow-net --allow-read --allow-env --allow-write --allow-plugin --lock=lock.json --cached-only index.ts

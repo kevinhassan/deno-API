@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        deno: [1.1.0]
+        deno: [1.1.1]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

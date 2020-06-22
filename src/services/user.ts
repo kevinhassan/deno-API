@@ -1,15 +1,16 @@
-import { User } from "../mod.ts";
-const data = JSON.parse(Deno.readTextFileSync("db.json"));
+import { ObjectId } from "../deps.ts";
+import { User, users } from "../mod.ts";
 
-export const users: Array<User> = data.users;
+export const getAll = async () => await users.find();
 
-export const getAll = () => users;
+export const get = async (id: string) => await users.findOne({ _id: ObjectId(id) });
 
-export const get = (id: number) => users.filter((user) => user.id === id);
+export const add = async (user: User) => await users.insertOne(user);
 
-export const add = (user: User) => [...users, user];
+export const remove = async (id: string) => await users.deleteOne({ _id: ObjectId(id) });
 
-export const remove = (id: number) => users.filter((user) => user.id !== id);
-
-export const update = (newUser: User) =>
-  users.map((user) => user.id === newUser.id ? newUser : user);
+export const update = async (updatedUser: User, userId: string) =>
+  await users.updateOne(
+    { _id: ObjectId(userId) },
+    { $set: updatedUser },
+  );
