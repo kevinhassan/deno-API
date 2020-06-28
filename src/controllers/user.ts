@@ -9,26 +9,14 @@ export async function getUsers(
   response.body = await UserService.getAll();
 }
 
-export async function addUser(
-  { request, response }: {
-    request: any;
-    response: any;
-  },
-) {
-  const user = (await request.body()).value as User;
-  user.password = await auth.encryptPassword(user.password);
-  response.status = 201;
-  response.body = await UserService.add(user);
-}
-
-export async function getUser(
+export async function getUserById(
   { params, response }: {
     params: any;
     response: any;
   },
 ) {
   response.status = 200;
-  response.body = await UserService.get(params.id);
+  response.body = await UserService.getById(params.id);
 }
 
 export async function updateUser(

@@ -9,31 +9,32 @@ import {
 import { env } from "../mod.ts";
 
 const key = env.SECRET_JWT;
+export const TOKEN_EXPIRATION = 60000;
 
 const payload: Payload = {
   iss: "joe",
-  exp: setExpiration(new Date().getTime() + 60000),
+  exp: setExpiration(new Date().getTime() + TOKEN_EXPIRATION),
 };
 const header: Jose = {
   alg: "HS256",
   typ: "JWT",
 };
 
-export async function encryptPassword(password: string) {
-  return await bcrypt.hash(password);
+export function encryptPassword(password: string) {
+  return bcrypt.hash(password);
 }
 
-export async function isPasswordEqual(
+export function isPasswordEqual(
   password: string,
   hashedPassword: string,
 ) {
-  return await bcrypt.compare(password, hashedPassword);
+  return bcrypt.compare(password, hashedPassword);
 }
 
 export async function isJWTValid(jwt: string) {
-  return (await validateJwt(jwt, key)).isValid;
+  return jwt.length > 0 && (await validateJwt(jwt, key)).isValid;
 }
 
-export async function createJWT() {
+export function generateJWT() {
   return makeJwt({ header, payload, key });
 }

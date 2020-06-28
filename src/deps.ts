@@ -1,4 +1,10 @@
-export { Application, Router } from "https://deno.land/x/oak@v5.2.0/mod.ts";
+export {
+  Application,
+  Router,
+  isHttpError,
+  Context,
+  Status,
+} from "https://deno.land/x/oak@v5.2.0/mod.ts";
 export { validateJwt } from "https://deno.land/x/djwt/validate.ts";
 export {
   makeJwt,

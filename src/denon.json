@@ -6,8 +6,7 @@
   "scripts": {
     "start": {
       "cmd": "deno run index.ts",
-      "desc": "run my deno server file",
-      "lock": "lock.json"
+      "desc": "run my deno server file"
     }
   }
 }
